@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerAnimator : MonoBehaviour
 {
-    private const string IS_WALKING = "IsWalking";
+    private const string IS_WALKING = "iswalking";
 
     private Animator animator;
     [SerializeField] private NewBehaviourScript player;
     private void Awake()
     {
-        animator = getComponent<Animator>();
+        animator = GetComponent<Animator>();
         
 
     }
