@@ -3,14 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
-{
+{    public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
+
+    public class OnSelectedCounterChangedEventArgs : EventArgs
+    {
+        public ClearCounter selectedCounter;
+    }
+
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private GameInput gameInput;
     [SerializeField] private LayerMask countersLayerMask;
-
-
+    
+    
     private bool iswalking;
     private Vector3 lastInteractDir;
+    private ClearCounter selectedCounter;
+
     private void Start()
     {
         gameInput.OnInteractAction += GameInput_OnInteractAction;
@@ -18,6 +26,14 @@ public class Player : MonoBehaviour
 
     private void GameInput_OnInteractAction(object sender,System.EventArgs e)
     {
+        if (selectedCounter != null)
+        {
+
+            selectedCounter.Interact();
+        }
+
+
+
         Vector2 inputVector = gameInput.GetMovementVectorNormalized();
         Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
 
@@ -67,9 +83,32 @@ public class Player : MonoBehaviour
             {
                 //Has ClearCounter
                 // clearCounter.Interact();
-               // Debug.Log(clearCounter);
+                // Debug.Log(clearCounter);
+                if (clearCounter != selectedCounter)
+                {
+                    selectedCounter = clearCounter;
+                    OnSelectedCounterChanged?.Invoke(this,new OnSelectedCounterChangedEventArgs){
+                        selectedCounter = selectedCounter;
+                    });
+                 }       
+                else
+                {
+                    selectedCounter = null;
+                    OnSelectedCounterChanged?.Invoke(this, new OnSelectedCounterChangedEventArgs){
+                        selectedCounter = selectedCounter;
+                    });
 
+                }
             }
+            else
+            {
+                selectedCounter= null;
+                OnSelectedCounterChanged?.Invoke(this, new OnSelectedCounterChangedEventArgs){
+                    selectedCounter = selectedCounter;
+                });
+            }
+            Debug.Log(selectedCounter);
+            
         }
       
 
@@ -130,6 +169,10 @@ public class Player : MonoBehaviour
         transform.forward = Vector3.Slerp(transform.forward, moveDir, Time.deltaTime * rotateSpeed);
         
 
+
+    }
+    private void SetSelectedCounter(ClearCounter selectedCounter)
+    {
 
     }
 
