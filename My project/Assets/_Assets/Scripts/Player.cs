@@ -1,15 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Player : MonoBehaviour
-{    public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
+{
 
-    public class OnSelectedCounterChangedEventArgs : EventArgs
+    public static Player Instance { get; private set ; }
+
+
+
+    
+    public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
+public class OnSelectedCounterChangedEventArgs : EventArgs
     {
         public ClearCounter selectedCounter;
     }
-
+    
+    
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private GameInput gameInput;
     [SerializeField] private LayerMask countersLayerMask;
@@ -18,6 +26,15 @@ public class Player : MonoBehaviour
     private bool iswalking;
     private Vector3 lastInteractDir;
     private ClearCounter selectedCounter;
+
+    private void Awake()
+    {
+        if(Instance!= null)
+        {
+            Debug.LogError("There is more than one Player instance");
+        }
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -86,28 +103,20 @@ public class Player : MonoBehaviour
                 // Debug.Log(clearCounter);
                 if (clearCounter != selectedCounter)
                 {
-                    selectedCounter = clearCounter;
-                    OnSelectedCounterChanged?.Invoke(this,new OnSelectedCounterChangedEventArgs){
-                        selectedCounter = selectedCounter;
-                    });
+                    SetSelectedCounter(clearCounter);
                  }       
                 else
                 {
-                    selectedCounter = null;
-                    OnSelectedCounterChanged?.Invoke(this, new OnSelectedCounterChangedEventArgs){
-                        selectedCounter = selectedCounter;
-                    });
-
+                    SetSelectedCounter(null);
+                  
                 }
             }
             else
             {
-                selectedCounter= null;
-                OnSelectedCounterChanged?.Invoke(this, new OnSelectedCounterChangedEventArgs){
-                    selectedCounter = selectedCounter;
-                });
+
+                SetSelectedCounter(null);
             }
-            Debug.Log(selectedCounter);
+           // Debug.Log(selectedCounter);
             
         }
       
@@ -173,7 +182,15 @@ public class Player : MonoBehaviour
     }
     private void SetSelectedCounter(ClearCounter selectedCounter)
     {
+        this.selectedCounter = selectedCounter;
 
+        OnSelectedCounterChanged?.Invoke(this, new OnSelectedCounterChangedEventArgs
+        {
+
+            selectedCounter = selectedCounter
+
+        });
+     
     }
 
 

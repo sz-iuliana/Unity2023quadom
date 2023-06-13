@@ -141,6 +141,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b2819840a36bd4baf196ee602ea880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clearCounter: {fileID: 0}
+  visualGameObject: {fileID: 0}
 --- !u!1001 &93340430
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -556,6 +558,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4826162349268535183, guid: 7b5f49a6c6941444ca71dd065174f655,
+        type: 3}
+      propertyPath: clearCounter
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6666570921521986864, guid: 7b5f49a6c6941444ca71dd065174f655,
+        type: 3}
+      propertyPath: clearCounter
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8365203310403325141, guid: 7b5f49a6c6941444ca71dd065174f655,
         type: 3}
       propertyPath: m_RootOrder
@@ -616,7 +628,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: ClearCounterstanga
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -912617257070879306, guid: 7b5f49a6c6941444ca71dd065174f655, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1848,7 +1861,7 @@ PrefabInstance:
     - target: {fileID: 5451289661043957253, guid: 7b5f49a6c6941444ca71dd065174f655,
         type: 3}
       propertyPath: m_Name
-      value: ClearCounter_VisualSelected
+      value: ClearCounter_Visual
       objectReference: {fileID: 0}
     - target: {fileID: 8365203310403325141, guid: 7b5f49a6c6941444ca71dd065174f655,
         type: 3}
@@ -1910,7 +1923,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: ClearCounterdreapta
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4826162349268535183, guid: 7b5f49a6c6941444ca71dd065174f655, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
