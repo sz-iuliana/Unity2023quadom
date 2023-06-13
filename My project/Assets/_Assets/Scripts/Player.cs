@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IKitchenObjectParent
 {
 
     public static Player Instance { get; private set ; }
@@ -21,11 +21,13 @@ public class OnSelectedCounterChangedEventArgs : EventArgs
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private GameInput gameInput;
     [SerializeField] private LayerMask countersLayerMask;
-    
-    
+    [SerializeField] private Transform kitchenObjectHoldPoint;
+
+
     private bool iswalking;
     private Vector3 lastInteractDir;
     private ClearCounter selectedCounter;
+    private KitchenObject kitchenObject;
 
     private void Awake()
     {
@@ -46,7 +48,7 @@ public class OnSelectedCounterChangedEventArgs : EventArgs
         if (selectedCounter != null)
         {
 
-            selectedCounter.Interact();
+            selectedCounter.Interact(this);
         }
 
 
@@ -89,14 +91,14 @@ public class OnSelectedCounterChangedEventArgs : EventArgs
 
         if (moveDir != Vector3.zero)
         {
-            lastInteractDir= moveDir;
+            lastInteractDir = moveDir;
         }
-        
+
         float interactDistance = 2f;
 
-      if( Physics.Raycast(transform.position,lastInteractDir,out RaycastHit raycastHit , interactDistance,countersLayerMask))
+        if (Physics.Raycast(transform.position, lastInteractDir, out RaycastHit raycastHit, interactDistance, countersLayerMask))
         {
-           if( raycastHit.transform.TryGetComponent(out ClearCounter clearCounter))
+            if (raycastHit.transform.TryGetComponent(out ClearCounter clearCounter))
             {
                 //Has ClearCounter
                 // clearCounter.Interact();
@@ -104,21 +106,23 @@ public class OnSelectedCounterChangedEventArgs : EventArgs
                 if (clearCounter != selectedCounter)
                 {
                     SetSelectedCounter(clearCounter);
-                 }       
-                else
-                {
-                    SetSelectedCounter(null);
-                  
                 }
+
             }
             else
             {
-
                 SetSelectedCounter(null);
+
             }
-           // Debug.Log(selectedCounter);
-            
         }
+        else
+        {
+
+            SetSelectedCounter(null);
+        }
+        Debug.Log(selectedCounter);
+
+    
       
 
     }
@@ -192,6 +196,26 @@ public class OnSelectedCounterChangedEventArgs : EventArgs
         });
      
     }
+    public Transform GetKitchenObjectFollowtransform()
+    {
+        return kitchenObjectHoldPoint;
+    }
 
+    public void SetKitchenObject(KitchenObject kitchenObject)
+    {
+        this.kitchenObject = kitchenObject;
+    }
+    public KittchenObject GetKitchenObject()
+    {
+        return kitchenObject;
+    }
+    public void ClearKitchenObject()
+    {
+        kitchenObject = null;
+    }
+    public bool HasKitchenObject()
+    {
+        return kitchenObject != null;
+    }
 
 }
