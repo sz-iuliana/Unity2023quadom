@@ -22,6 +22,7 @@ public class GameInput : MonoBehaviour
     }
 
 
+
     public Vector2 GetMovementVectorNormalized()
     {
 

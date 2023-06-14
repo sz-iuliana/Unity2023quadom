@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 8365203310403325142}
   - component: {fileID: -912617257070879306}
   m_Layer: 6
-  m_Name: ClearCounter
+  m_Name: ClearCounter_BACKUP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,8 +61,8 @@ Transform:
   m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5451289661043957252}
   - {fileID: 1836328943004402284}
+  - {fileID: 5451289661043957252}
   - {fileID: 7874361293282726067}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -100,8 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9629841166792df4497376f04e843af0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tomatoPrefab: {fileID: 7162097870067683161, guid: 3c960b53f633e2e4096c334b1b2dc276,
-    type: 3}
+  kitchenObjectSO: {fileID: 0}
   counterTopPoint: {fileID: 7874361293282726067}
 --- !u!1001 &2795047025943946951
 PrefabInstance:
