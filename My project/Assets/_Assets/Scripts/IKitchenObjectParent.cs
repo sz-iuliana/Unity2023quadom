@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public interface IKitchenObjectParent 
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Transform GetKitchenObjectFollowTransform();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+    public void SetKitchenObject(KitchenObject kitchenObject);
+
+    public KitchenObject GetKitchenObject();
+
+    public void ClearKitchenObject();
+
+    public bool HasKitchenObject();
+    
 }

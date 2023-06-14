@@ -6,23 +6,10 @@ public class ClearCounter : MonoBehaviour ,IKitchenObjectParent
 {
     [SerializeField] private KitchenObjectSO kitchenObjectSO;
     [SerializeField] private Transform counterTopPoint;
-    [SerializeField] private ClearCounter secondClearCounter;
-    [SerializeField] bool testing;
-    public KitchenObject kitchenObject;
+    [SerializeField] private IKitchenObjectParent kitchenObjectParent;
+   
+    private KitchenObject kitchenObject;
 
-    private void Update()
-    {
-        if(testing && Input.GetKeyDown(KeyCode.T))
-        {
-            if (kitchenObject != null) {
-                kitchenObject.SetClearCounter(secondClearCounter);
-               // Debug.Log(kitchenObject.GetClearCounter());
-            
-            }
-
-
-        }
-    }
 
     public void Interact(Player player)
     {
@@ -31,8 +18,10 @@ public class ClearCounter : MonoBehaviour ,IKitchenObjectParent
         if (kitchenObject == null)
         {
             Transform kitchenObjectTransform = Instantiate(kitchenObjectSO.prefab, counterTopPoint);
-            kitchenObjectTransform.GetComponent<KitchenObject>().SetClearCounter(this);
+            kitchenObjectTransform.GetComponent<KitchenObject>().SetKitchenObjectParent(this);
            // kitchenObjectTransform.localPosition = Vector3.zero;
+
+
             //Debug.Log(kitchenObjectTransform.GetComponent<KitchenObject>().GetKitchenObjectSO().objectName);
            // kitchenObject = kitchenObjectTransform.GetComponent<KitchenObject>();
           //  kitchenObject.SetClearCounter(this);
@@ -47,7 +36,7 @@ public class ClearCounter : MonoBehaviour ,IKitchenObjectParent
         }
     }
     
-    public Transform GetKitchenObjectFollowtransform()
+    public Transform GetKitchenObjectFollowTransform()
     {
         return counterTopPoint;
     }
@@ -56,7 +45,7 @@ public class ClearCounter : MonoBehaviour ,IKitchenObjectParent
     {
         this.kitchenObject= kitchenObject;
     }
-    public KittchenObject GetKitchenObject()
+    public KitchenObject GetKitchenObject()
     {
         return kitchenObject;
     }
@@ -68,4 +57,5 @@ public class ClearCounter : MonoBehaviour ,IKitchenObjectParent
     {
         return kitchenObject != null;
     }
+    
 }

@@ -196,7 +196,7 @@ public class OnSelectedCounterChangedEventArgs : EventArgs
         });
      
     }
-    public Transform GetKitchenObjectFollowtransform()
+    public Transform GetKitchenObjectFollowTransform()
     {
         return kitchenObjectHoldPoint;
     }
@@ -205,7 +205,7 @@ public class OnSelectedCounterChangedEventArgs : EventArgs
     {
         this.kitchenObject = kitchenObject;
     }
-    public KittchenObject GetKitchenObject()
+    public KitchenObject GetKitchenObject()
     {
         return kitchenObject;
     }
