@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ContainerCounterVisual : MonoBehaviour
-{
+{/*
     private const string OPEN_CLOSE = "OpenClose";
     private Animator animator;
     [SerializeField] private ContainerCounter containerCounter;
@@ -21,5 +21,5 @@ public class ContainerCounterVisual : MonoBehaviour
     {
         animator.SetTrigger(OPEN_CLOSE);
     }
-
+    */
 }
