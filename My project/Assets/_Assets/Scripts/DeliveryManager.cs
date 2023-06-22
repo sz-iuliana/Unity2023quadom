@@ -80,9 +80,9 @@ public class DeliveryManager : MonoBehaviour
 
 
         }
-        
 
 
+        OnRecipeFailed?.Invoke(this, EventArgs.Empty);
 
     } 
 

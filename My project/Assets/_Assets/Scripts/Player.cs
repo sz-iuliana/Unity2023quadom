@@ -10,7 +10,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
 
 
-
+    public event EventHandler OnPickedSomething;
     public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
     public class OnSelectedCounterChangedEventArgs : EventArgs
     {
@@ -46,6 +46,11 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
     private void GameInput_OnInteractAlternateAction(object sender, System.EventArgs e)
     {
+       if(!KitchenGameManager.Instance.IsGamePlaying()) return;
+        
+           
+        
+
         if (selectedCounter != null)
         {
 
@@ -55,6 +60,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
     private void GameInput_OnInteractAction(object sender, System.EventArgs e)
     {
+        if (!KitchenGameManager.Instance.IsGamePlaying()) return;
         if (selectedCounter != null)
         {
 
@@ -89,7 +95,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
         float interactDistance = 2f;
 
         if (Physics.Raycast(transform.position, lastInteractDir, out RaycastHit raycastHit, interactDistance, countersLayerMask)){
-            Debug.Log("interactioneaza");
+            //Debug.Log("interactioneaza");
          if (raycastHit.transform.TryGetComponent(out BaseCounter baseCounter))
             {
                 Debug.Log("raycast.transform");
@@ -99,7 +105,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
                 if (baseCounter != selectedCounter)
                 {
                     SetSelectedCounter(baseCounter);
-                    Debug.Log("seteaza counterul  la basecounter");
+                  //  Debug.Log("seteaza counterul  la basecounter");
                 }
 
            }
@@ -114,7 +120,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
        
 
             SetSelectedCounter(null);
-            Debug.Log("nu interactioneaza");
+           // Debug.Log("nu interactioneaza");
         }
         //  Debug.Log(selectedCounter);
     
@@ -174,7 +180,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
         if (canMove)
         {
             transform.position += moveDir * moveDistance;
-            Debug.Log("movedir*moveDistance"+ moveDir*moveDistance);
+           
         }
         float rotateSpeed = 10f;
         transform.forward = Vector3.Slerp(transform.forward, moveDir, Time.deltaTime * rotateSpeed);
@@ -202,6 +208,12 @@ public class Player : MonoBehaviour, IKitchenObjectParent
     public void SetKitchenObject(KitchenObject kitchenObject)
     {
         this.kitchenObject = kitchenObject;
+
+        if(kitchenObject != null)
+        {
+            OnPickedSomething?.Invoke(this, EventArgs.Empty);
+        }
+
     }
     public KitchenObject GetKitchenObject()
     {
