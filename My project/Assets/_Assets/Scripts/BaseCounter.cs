@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class BaseCounter : MonoBehaviour ,IKitchenObjectParent
 {
@@ -12,7 +13,7 @@ public class BaseCounter : MonoBehaviour ,IKitchenObjectParent
 
     public virtual void Interact(Player player)
     {
-        Debug.LogError("BaseCounter.Interact");
+       Debug.LogError("BaseCounter.Interact");
     }
 
     public virtual void InteractAlternate(Player player)

@@ -94,7 +94,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
             {
                 Debug.Log("raycast.transform");
                 
-                //Has ClearCounter
+                //Has ClearCounteras
 
                 if (baseCounter != selectedCounter)
                 {
@@ -174,7 +174,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
         if (canMove)
         {
             transform.position += moveDir * moveDistance;
-
+            Debug.Log("movedir*moveDistance"+ moveDir*moveDistance);
         }
         float rotateSpeed = 10f;
         transform.forward = Vector3.Slerp(transform.forward, moveDir, Time.deltaTime * rotateSpeed);

@@ -187,22 +187,22 @@ PrefabInstance:
     - target: {fileID: 8365203310403325141, guid: 3d748058dd8cbb64892286a3b68beb7d,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.00793695
+      value: 0.64278764
       objectReference: {fileID: 0}
     - target: {fileID: 8365203310403325141, guid: 3d748058dd8cbb64892286a3b68beb7d,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8365203310403325141, guid: 3d748058dd8cbb64892286a3b68beb7d,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9999686
+      value: -0.7660445
       objectReference: {fileID: 0}
     - target: {fileID: 8365203310403325141, guid: 3d748058dd8cbb64892286a3b68beb7d,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8365203310403325141, guid: 3d748058dd8cbb64892286a3b68beb7d,
         type: 3}
@@ -212,7 +212,7 @@ PrefabInstance:
     - target: {fileID: 8365203310403325141, guid: 3d748058dd8cbb64892286a3b68beb7d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 179.09
+      value: -100
       objectReference: {fileID: 0}
     - target: {fileID: 8365203310403325141, guid: 3d748058dd8cbb64892286a3b68beb7d,
         type: 3}
@@ -229,7 +229,7 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8365203310403325141, guid: 3d748058dd8cbb64892286a3b68beb7d,
         type: 3}
-      insertIndex: -1
+      insertIndex: 0
       addedObject: {fileID: 4059745249828462824}
     - targetCorrespondingSourceObject: {fileID: 8365203310403325141, guid: 3d748058dd8cbb64892286a3b68beb7d,
         type: 3}
@@ -281,6 +281,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8843809641150308576}
     m_Modifications:
+    - target: {fileID: 985328361017045026, guid: 0004cb1e11ad014419b943c7da960724,
+        type: 3}
+      propertyPath: baseCounter
+      value: 
+      objectReference: {fileID: 4157796637505740627}
     - target: {fileID: 4589716710238282922, guid: 0004cb1e11ad014419b943c7da960724,
         type: 3}
       propertyPath: m_Name
