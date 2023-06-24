@@ -4,17 +4,41 @@ using UnityEngine;
 using System;
 
 public class GameInput : MonoBehaviour
-{    public event EventHandler OnInteractAction;
+{   
+    public static GameInput Instance { get; private set; }
+    public event EventHandler OnInteractAction;
     public event EventHandler OnInteractAlternateAction;
+    public event EventHandler OnPauseAction;
     private PlayerInputActions playerInputActions;
 
-    private void Awake()
-    {
-       playerInputActions = new PlayerInputActions();
-       playerInputActions.Caracter.Enable();
-       playerInputActions.Caracter.Interact.performed += Interact_performed;
-        playerInputActions.Caracter.InteractAlternate.performed += InteractAlternate_performed;
+    
 
+    private void Awake()
+    { 
+        Instance = this;
+        playerInputActions = new PlayerInputActions();
+        playerInputActions.Caracter.Enable();
+
+        playerInputActions.Caracter.Interact.performed += Interact_performed;
+        playerInputActions.Caracter.InteractAlternate.performed += InteractAlternate_performed;
+        playerInputActions.Caracter.Pause.performed += Pause_performed;
+
+       
+
+    }
+    private void OnDestroy()
+    {
+        playerInputActions.Caracter.Interact.performed -= Interact_performed;
+        playerInputActions.Caracter.InteractAlternate.performed -= InteractAlternate_performed;
+        playerInputActions.Caracter.Pause.performed -= Pause_performed;
+
+        playerInputActions.Dispose();
+       
+    }
+
+    private void Pause_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        OnPauseAction?.Invoke(this, EventArgs.Empty);
     }
 
     private void InteractAlternate_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
