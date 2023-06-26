@@ -31,6 +31,7 @@ public class StoveCounter : BaseCounter ,IHasProgress
     private float burningTimer;  
     private BurningRecipeSO burningRecipeSO;
     private FryingRecipeSO fryingRecipeSO;
+    private float burningTimerMax;
 
     private void Start()
     {
@@ -60,7 +61,7 @@ public class StoveCounter : BaseCounter ,IHasProgress
                     if (fryingTimer > fryingRecipeSO.fryingTimerMax)
                     {
                         //fried
-
+                        KitchenObject kitchenObject = GetKitchenObject();
 
                         GetKitchenObject().DestroySelf();
                         KitchenObject.SpawnKitchenObject(fryingRecipeSO.output, this);
@@ -70,7 +71,8 @@ public class StoveCounter : BaseCounter ,IHasProgress
                        state = State.Fried;
                         
                         burningTimer = 0f;
-                        burningRecipeSO = GetBurningRecipeSOWithInput(GetKitchenObject().GetKitchenObjectSO());
+                       // burningRecipeSO = GetBurningRecipeSOWithInput(kitchenObject);
+                        burningTimerMax=burningRecipeSO.burningTimerMax;
 
                         OnStateChanged?.Invoke(this, new OnStateChangedEventArgs {
                         
@@ -89,14 +91,14 @@ public class StoveCounter : BaseCounter ,IHasProgress
 
                     OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs {
 
-                        progressNormalized = burningTimer / burningRecipeSO.burningTimerMax
+                        progressNormalized = burningTimer / burningTimerMax
 
                     });
 
 
                    
 
-                    if (burningTimer > burningRecipeSO.burningTimerMax)
+                    if (burningTimer > burningTimerMax)
                     {
                         //fried
 
